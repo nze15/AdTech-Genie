@@ -16,7 +16,7 @@ export default function Home() {
     {
       id: "1",
       role: "assistant",
-      content: "Hello! I'm your AI Brain. How can I assist you today?",
+      content: "Hello! I'm AdTech Genie, your AI marketing assistant. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
@@ -105,8 +105,8 @@ export default function Home() {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">AI Brain</h1>
-              <p className="text-xs text-green-300">Neural Intelligence System</p>
+              <h1 className="text-xl font-bold text-white">AdTech Genie</h1>
+              <p className="text-xs text-green-300">Your AI Marketing Assistant</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
