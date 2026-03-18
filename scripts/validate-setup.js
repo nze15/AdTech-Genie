@@ -97,7 +97,7 @@ function validate() {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
     const deps = packageJson.dependencies || {};
 
-    const requiredDeps = ['next', 'react', '@groq/sdk', 'zustand'];
+    const requiredDeps = ['next', 'react', 'groq-sdk', 'zustand'];
     requiredDeps.forEach((dep) => {
       if (check(dep in deps, `${dep} installed`, `${dep} not found in package.json`)) {
         passed++;
