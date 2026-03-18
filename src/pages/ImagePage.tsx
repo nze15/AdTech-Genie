@@ -104,7 +104,7 @@ export default function ImagePage() {
         })
         const result = data?.[0]
         if (result?.url) {
-          setResults(prev => [{ url: result.url, prompt: finalPrompt, timestamp: new Date() }, ...prev])
+          setResults(prev => [{ url: result.url as string, prompt: finalPrompt, timestamp: new Date() }, ...prev])
           toast.success('Image edited successfully!')
         }
       } else {
@@ -115,7 +115,7 @@ export default function ImagePage() {
         })
         const result = data?.[0]
         if (result?.url) {
-          setResults(prev => [{ url: result.url, prompt: finalPrompt, timestamp: new Date() }, ...prev])
+          setResults(prev => [{ url: result.url as string, prompt: finalPrompt, timestamp: new Date() }, ...prev])
           toast.success('Image generated successfully!')
         }
       }
