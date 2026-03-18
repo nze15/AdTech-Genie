@@ -9,12 +9,7 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "^16.1.3",

@@ -50,7 +50,6 @@ export default function Home() {
     <>
       <Header />
       <main className="min-h-screen">
-        {/* Hero Section */}
         <section className="container-app py-20 lg:py-32">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
@@ -75,7 +74,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
         <section id="features" className="bg-gray-50 py-20">
           <div className="container-app">
             <div className="max-w-2xl mx-auto text-center mb-16">
@@ -103,7 +101,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20 bg-primary text-white">
           <div className="container-app max-w-2xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">
@@ -120,7 +117,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Templates Preview */}
         <section id="templates" className="py-20">
           <div className="container-app">
             <div className="max-w-2xl mx-auto text-center mb-16">
@@ -164,7 +160,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Stats Section */}
         <section className="bg-gray-50 py-20">
           <div className="container-app">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
