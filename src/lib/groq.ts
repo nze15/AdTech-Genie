@@ -1,8 +1,15 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY || "",
-});
+// Server-side only: Groq client instantiation
+// This function should only be called from server-side code (API routes, server actions)
+export function getGroqClient() {
+  if (!process.env.GROQ_API_KEY) {
+    throw new Error("GROQ_API_KEY environment variable is not set");
+  }
+  return new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+  });
+}
 
 export interface CodeGenerationResponse {
   html: string;
@@ -44,6 +51,7 @@ export async function generateCode(
   conversationHistory?: { role: "user" | "assistant"; content: string }[]
 ): Promise<CodeGenerationResponse> {
   try {
+    const groq = getGroqClient();
     const messages: Array<{ role: "user" | "assistant"; content: string }> = [
       ...(conversationHistory || []),
       {
@@ -87,6 +95,7 @@ export async function generateCodeStream(
   conversationHistory?: { role: "user" | "assistant"; content: string }[]
 ): Promise<CodeGenerationResponse> {
   try {
+    const groq = getGroqClient();
     const messages: Array<{ role: "user" | "assistant"; content: string }> = [
       ...(conversationHistory || []),
       {

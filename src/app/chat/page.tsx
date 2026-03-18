@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { generateCode } from '@/lib/groq';
 import { useChatStore, usePreview, useUIState } from '@/lib/store';
 import { Button } from '@/components/button';
 import { nanoid } from 'nanoid';
@@ -50,8 +49,19 @@ export default function ChatPage() {
       setInput('');
       setLoading(true);
 
-      // Generate code with Groq
-      const result = await generateCode(input);
+      // Generate code with Groq via API
+      const response = await fetch('/api/chat/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: input }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to generate code');
+      }
+
+      const { data: result } = await response.json();
 
       // Add assistant message with generated code
       addMessage({
