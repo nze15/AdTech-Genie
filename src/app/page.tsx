@@ -1,36 +1,32 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
-  timestamp: Date;
+  timestamp: string;
 }
 
 const generateId = () => Math.random().toString(36).substring(2, 15);
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>(() => [
     {
       id: "1",
       role: "assistant",
       content: "Hello! I'm AdTech Genie, your AI marketing assistant. How can I help you today?",
-      timestamp: new Date(),
+      timestamp: "",
     },
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -39,7 +35,7 @@ export default function Home() {
       id: generateId(),
       role: "user",
       content: input,
-      timestamp: new Date(),
+      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -51,7 +47,7 @@ export default function Home() {
         id: generateId(),
         role: "assistant",
         content: getAIResponse(input),
-        timestamp: new Date(),
+        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
       setMessages((prev) => [...prev, assistantMessage]);
       setIsTyping(false);
@@ -69,8 +65,8 @@ export default function Home() {
     return responses[Math.floor(Math.random() * responses.length)];
   };
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const formatTime = (timestamp: string) => {
+    return timestamp;
   };
 
   return (
